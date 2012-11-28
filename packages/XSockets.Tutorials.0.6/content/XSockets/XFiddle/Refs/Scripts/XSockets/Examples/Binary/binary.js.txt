@@ -1,0 +1,39 @@
+﻿var ws = null;
+
+$(function () {
+
+   // add the dataTransfer property for use with the native `drop` event
+   // to capture information about files dropped into the browser window
+   jQuery.event.props.push("dataTransfer");
+
+   // Create a regular WebSocket "instance", using the GenericBinary WebSocketHandler
+   ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller, settings);  
+   
+   //Listen for the blob event and then create an image when it arrives
+   ws.bind("blob", function (blob) {
+      window.URL = window.URL || window.webkitURL;
+      var img = document.createElement("img");
+      img.height = 60;
+      img.src = window.URL.createObjectURL(blob);
+      img.onload = function (e) {
+          window.URL.revokeObjectURL(this.src);
+      }
+      $("#images").append($(img));
+   });
+
+   $("#dropbox").bind("drop dragenter dragexit dragover", function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+   });
+
+   $("#dropbox").bind("drop", function (e) {
+      $(this).hide();
+      e.stopPropagation();
+      e.preventDefault();
+      var files = e.dataTransfer.files;
+      $(files).each(function () {
+          ws.send(this);
+      });
+      $(this).show();
+   });
+});

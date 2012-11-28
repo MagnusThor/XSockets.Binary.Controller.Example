@@ -1,0 +1,32 @@
+﻿var viewmodelChannel = {
+  ChannelId : ko.observable(''),
+  Owner:ko.observable(''),
+  IsBinary : ko.observable(''),
+  setChannel : function(channel){
+  	viewmodelChannel.ChannelId(channel.ChannelId);
+    viewmodelChannel.Owner(channel.Owner);
+    viewmodelChannel.IsBinary(channel.IsBinary);
+  }
+};
+
+var ws = null;
+
+$(function(){
+  ko.applyBindings(viewmodelChannel);
+	$("#connected").hide();
+	ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller, settings);
+
+	ws.bind(XSockets.Events.open, function (conn) {              
+		$("#connected").show();
+      //Create a channel on click...
+      $("button").bind('click', function(e){
+      	e.preventDefault();
+  		ws.trigger(XSockets.Events.channel.create,{});
+      });
+      //Listen for the new channel
+      ws.bind(XSockets.Events.channel.create,function(channel){
+        $('button').hide();
+        viewmodelChannel.setChannel(channel);
+      });     
+	});	
+});

@@ -1,0 +1,18 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+
+using XSockets.Core.XSocket;
+using XSockets.Core.XSocket.Helpers;
+
+namespace <#= Model.Namespace #>
+{
+  public class <#= Model.HandlerName #> : XSocketController
+  {
+      public void On<#= Model.HandlerName #>Message(<#= Model.ModelName #> model)
+      {
+          //Do some persistence or whatever...            
+          //The row below makes no sense, it just an example of modelbinding :)  
+          this.SendToAll(model,"On<#= Model.HandlerName #>Message"); 
+      }
+  }  
+}

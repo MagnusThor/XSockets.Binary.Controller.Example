@@ -1,0 +1,15 @@
+﻿var ws = null;
+$(function(){
+  	
+	ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller,settings);
+
+    //Listen for 'foo'
+	ws.bind('foo',function(data){
+		$("#messages").prepend($("<div>").text(data.MyMessage));
+	});
+
+	//Trigger 'foo' on click
+	$("#trigger").bind('click',function(){
+      	ws.trigger('foo', { MyMessage: 'bar' });
+	});
+});

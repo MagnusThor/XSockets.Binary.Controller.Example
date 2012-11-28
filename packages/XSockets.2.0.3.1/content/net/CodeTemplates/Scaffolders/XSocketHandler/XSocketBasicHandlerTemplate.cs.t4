@@ -1,0 +1,10 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using XSockets.Core.XSocket;
+
+namespace <#= Model.Namespace #>
+{
+  public class <#= Model.HandlerName #> : XSocketController
+  {
+  }  
+}

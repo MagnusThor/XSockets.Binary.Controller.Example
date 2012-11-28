@@ -1,0 +1,5 @@
+﻿<div id="connected">You Are XSockets Connected!</div>
+<button>Create Channel</button>
+<div data-bind="text:'ChannelId: '+ChannelId()"></div>
+<div data-bind="text:'Owner: '+Owner()"></div>
+<div data-bind="text:'IsBinary: '+IsBinary()"></div>

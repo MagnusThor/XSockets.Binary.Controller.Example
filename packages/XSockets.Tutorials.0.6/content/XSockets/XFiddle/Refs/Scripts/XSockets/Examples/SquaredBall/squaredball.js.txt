@@ -1,0 +1,14 @@
+﻿var ws = null;
+$(function(){
+	ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller,settings);
+
+	ws.bind('SquaredBallMove', function(data){
+
+      $('#ball').css({left:data.x,top:data.y});
+	});
+	
+	$("body").mousemove(function(event) {
+      	var json = {x: event.pageX , y: event.pageY};
+    	ws.trigger('SquaredBallMove',json);  
+	});
+});

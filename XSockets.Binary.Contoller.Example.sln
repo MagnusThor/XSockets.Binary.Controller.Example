@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSockets.Binary.Contoller.Example", "XSockets.Binary.Contoller.Example\XSockets.Binary.Contoller.Example.csproj", "{421DB6C6-5C8F-42B6-94F7-AF94056231B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSockets.DevServer", "XSockets.DevServer\XSockets.DevServer.csproj", "{395BC41F-D926-43ED-A0AE-782804CBD37D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XSocketHandler", "XSocketHandler\XSocketHandler.csproj", "{3F6D8F7E-CF81-479D-937D-F70D27511007}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{421DB6C6-5C8F-42B6-94F7-AF94056231B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421DB6C6-5C8F-42B6-94F7-AF94056231B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421DB6C6-5C8F-42B6-94F7-AF94056231B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421DB6C6-5C8F-42B6-94F7-AF94056231B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{395BC41F-D926-43ED-A0AE-782804CBD37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{395BC41F-D926-43ED-A0AE-782804CBD37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{395BC41F-D926-43ED-A0AE-782804CBD37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{395BC41F-D926-43ED-A0AE-782804CBD37D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F6D8F7E-CF81-479D-937D-F70D27511007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6D8F7E-CF81-479D-937D-F70D27511007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6D8F7E-CF81-479D-937D-F70D27511007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F6D8F7E-CF81-479D-937D-F70D27511007}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

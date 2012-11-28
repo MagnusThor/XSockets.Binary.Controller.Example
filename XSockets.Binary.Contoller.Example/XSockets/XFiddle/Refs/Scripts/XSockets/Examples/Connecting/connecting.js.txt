@@ -1,0 +1,20 @@
+﻿
+var ws = null;
+
+$(function(){
+	$("div").hide();
+	ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller, settings);
+
+	ws.bind(XSockets.Events.open, function () {
+      	$("#disconnected").hide();
+		$("#connected").show();
+	});
+	ws.bind(XSockets.Events.close, function () {
+		$("#connected").hide();
+		$("#disconnected").show();
+	});
+	ws.bind(XSockets.Events.onError, function (err) {
+		console.log(err);
+		$("#error").text(err.Type + " - " + err.Message + " - " + err.CustomMessage).show();
+	});
+});

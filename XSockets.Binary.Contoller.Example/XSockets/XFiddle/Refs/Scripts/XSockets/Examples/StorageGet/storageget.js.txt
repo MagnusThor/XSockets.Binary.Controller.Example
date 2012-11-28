@@ -1,0 +1,14 @@
+﻿var ws = null;
+$(function(){
+	ws = new XSockets.WebSocket(protocol + "://" + serverLocation + "/" + controller,controller,settings);
+
+	//Listen for a get on the 'foo' key
+  	ws.bind(XSockets.Events.storage.get + 'foo',function(data){
+    	$("#messages").prepend($("<div>").text('Stored Key: ' + data.Key + ', Value: ' + data.Value));
+    });
+
+	//Get the value for 'foo'
+	$("#storeGet").bind('click',function(){
+      	ws.trigger(XSockets.Events.storage.get,{Key:'foo'});
+	});
+});

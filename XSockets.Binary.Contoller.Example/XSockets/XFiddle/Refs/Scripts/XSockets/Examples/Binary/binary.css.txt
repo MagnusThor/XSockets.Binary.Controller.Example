@@ -1,0 +1,15 @@
+﻿#dropbox
+{
+    width: 200px;
+    height: 200px;
+    border: 2px solid #DDD;
+    border-radius: 8px;
+    background-color: #FEFFEC;
+    text-align: center;
+}
+    
+#images img
+{
+    float: left;
+    margin-right: 10px;
+}

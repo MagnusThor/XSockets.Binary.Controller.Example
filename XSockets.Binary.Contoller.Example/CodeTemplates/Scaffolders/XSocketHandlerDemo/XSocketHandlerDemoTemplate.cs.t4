@@ -1,0 +1,24 @@
+﻿<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using XSockets.Core.XSocket;
+using XSockets.Core.XSocket.Helpers;
+
+namespace XSocketHandler.Example
+{
+	public class Chat : XSocketController
+	{     
+    	public void OnChatMessage(ChatMessage model)
+    	{        
+    	    //Do some persistence or whatever...      	    
+    	    //The row below makes no sense, it just an example of modelbinding :)          
+    	    this.SendToAll(model,"OnChatMessage");
+    	}
+	}
+
+    public class ChatMessage
+    {
+        public string UserName { get; set; }
+        public string When { get; set; }
+        public string Message { get; set; }
+    }
+}

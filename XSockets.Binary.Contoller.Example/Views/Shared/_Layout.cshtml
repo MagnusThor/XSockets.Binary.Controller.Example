@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>XSockets.Binary.Controller.Example</title>
+    <script src="/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="/Scripts/jXSockets.2.0.3.min.js"></script>
+
+    <style>
+        #dropbox {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #DDD;
+            border-radius: 8px;
+            background-color: #FEFFEC;
+            text-align: center;
+        }
+
+        #images img {
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+
+
+    <script>
+        
+   
+
+        window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+        window.URL = window.URL || window.webkitURL;
+
+        var ws;
+        var settings = {};
+        var url = "ws://127.0.0.1:4502/MyCustomBinaryController";
+        var controller = "MyCustomBinaryController";
+        // see XSockets.Handler project and the MyCustomBinaryController.cs (Controller Class)
+      
+
+    
+        $(function () {
+            
+         
+
+
+            ws = new XSockets.WebSocket(url, controller, settings);
+
+            ws.bind(XSockets.Events.open, function(conn) {
+                console.log("connection", conn);
+            });
+
+            ws.bind("notifySender", function(message) {
+                console.log("notifySender", message);
+            });
+
+            //Listen for the blob event and then create an image when it arrives
+            ws.bind("blob", function (blob) {
+                window.URL = window.URL || window.webkitURL;
+                var img = document.createElement("img");
+                img.height = 60;
+                img.src = window.URL.createObjectURL(blob);
+                img.onload = function(e) {
+                    window.URL.revokeObjectURL(this.src);
+                };
+                $("#images").append($(img));
+            });
+
+
+            document.querySelector("#myFiles").addEventListener("change", function (e) {
+             
+                for (var i = 0; i < e.target.files.length; i++) {                  
+
+                    var reader = new FileReader();
+
+                    // Closure to capture the file information.
+                    reader.onloadend = (function (theFile) {
+                      
+                        console.log(theFile.target.readyState == FileReader.DONE);
+                          ws.send(theFile.target.result);
+                      
+                    });
+                    reader.readAsArrayBuffer(e.target.files[i]);
+
+                }
+            
+            }, false);
+          
+          
+           
+        });
+
+    </script>
+
+
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
